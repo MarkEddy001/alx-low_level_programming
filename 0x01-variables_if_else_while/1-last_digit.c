@@ -7,7 +7,7 @@
  * Description: Program assigns a random number to n each time it is executed.
  * It then prints the last digit of the number stored in the variable n.
  * Return: Always 0 (Success)
- * Author: IanoNjuguna
+ * Author: MarkEdwards
  */
 
 int main(void)
