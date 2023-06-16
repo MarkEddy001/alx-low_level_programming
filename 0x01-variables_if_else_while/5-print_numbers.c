@@ -6,7 +6,7 @@
  * main - Entry point
  * Description: Print numbers 0 to 9 followed by a newline
  * Return: Always 0 (Success)
- * Author: IanoNjuguna
+ * Author: MarkEdwards
  */
 
 int main(void)
