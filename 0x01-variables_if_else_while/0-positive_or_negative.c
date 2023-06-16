@@ -7,7 +7,7 @@
  * Description: Program assigns a random number to n each time it is executed.
  * It then prints whether the number stored in n is zero, positive or negative.
  * Return: Always 0 (Success)
- * Author: IanoNjuguna
+ * Author: MarkEdwards
  */
 
 int main(void)
