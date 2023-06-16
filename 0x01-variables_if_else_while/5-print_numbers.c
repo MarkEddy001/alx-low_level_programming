@@ -4,26 +4,22 @@
 
 /**
  * main - Entry point
- * Description: Print lower and upper alphabet on the same line
+ * Description: Print numbers 0 to 9 followed by a newline
  * Return: Always 0 (Success)
  * Author: IanoNjuguna
  */
 
 int main(void)
 {
-char z = 'a';
-char Z = 'A';
+int a;
+a = 0;
 
-while (z <= 'z')
+while (a <= 9)
 {
-	putchar(z);
-	z++;
-}
-while (Z <= 'Z')
-{
-	putchar(Z);
-	Z++;
+	printf("%d", a);
+	a++;
 }
 putchar('\n');
+
 return (0);
 }
