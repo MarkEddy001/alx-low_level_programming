@@ -1,7 +1,2 @@
-#ifndef main_h
-	#define main_h
-
-
+/* Declaration of protos*/
 int _putchar(char);
-
-#endif
