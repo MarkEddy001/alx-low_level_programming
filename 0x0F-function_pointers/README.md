@@ -1,4 +1,4 @@
-# 0x0F. C - Function pointers
+# 0x0F. C - Function pointers.
 
 ## Resources
 - [Function pointers in C]()
