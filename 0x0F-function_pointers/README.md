@@ -1,145 +1,181 @@
-0x0F. C - Function pointers
-===========================
+# 0x0F. C - Function pointers
 
--   By Alexandre Gautier
--   Ongoing project - started July 19, 2023 6:00 AM, must end by 07-20-2023
--   Checker will be released at July 19, 2023 12:00PM
--   QA review fully automated.
+## Resources
+- [Function pointers in C]()
+- [Pointers to functions]()
+- [Function pointers in C/C++]()
+- [Why pointers to functions?]()
+- [Everything you need to know about pointers in C]()
 
-Resources
----------
+---
 
-**Read or watch**:
+## Learning Objectives
 
--   [Function Pointer in C](https://alx-intranet.hbtn.io/rltoken/yt8Q9jxzT_gyRAvnNkAgkw "Function Pointer in C")
--   [Pointers to functions](https://alx-intranet.hbtn.io/rltoken/wP-yWvo9IqbcQsywMmh_iQ "Pointers to functions")
--   [Function Pointers in C / C++](https://alx-intranet.hbtn.io/rltoken/dAN27S1yyBPeBa8RGfvPNA "Function Pointers in C / C++")
--   [why pointers to functions?](https://alx-intranet.hbtn.io/rltoken/1vvWpH9Ux8axOLc9jPWcMw "why pointers to functions?")
--   [Everything you need to know about pointers in C](https://alx-intranet.hbtn.io/rltoken/G_0lQzs4LAd1e5tKhNMPiw "Everything you need to know about pointers in C")
+- [What are function pointers and how to use them](#what-are-function-pointers-and-how-to-use-them)
+- [What does a function pointer exactly hold](#what-does-a-function-pointer-exactly-hold)
+- [Where does a function pointer point to in the virtual memory](#where-does-a-function-pointer-point-to-in-the-virtual-memory)
 
-Learning Objectives
--------------------
+---
 
-At the end of this project, you are expected to be able to [explain to anyone](https://alx-intranet.hbtn.io/rltoken/k0azA8UvMNuoAq5DODHvdw "explain to anyone"), **without the help of Google**:
+## Function Pointers in C
 
-### General
+Function pointers are variables that hold the address of a function in memory. They allow you to pass functions as arguments to other functions, or to store functions in arrays or structures.
 
--   What are function pointers and how to use them
--   What does a function pointer exactly hold
--   Where does a function pointer point to in the virtual memory
+Here's an example of a function pointer declaration:
 
-Requirements
-------------
+```c
+int (*myFunc)(int, int);
 
-### General
+```
 
--   Allowed editors: `vi`, `vim`, `emacs`
--   All your files will be compiled on Ubuntu 20.04 LTS using `gcc`, using the options `-Wall -Werror -Wextra -pedantic -std=gnu89`
--   All your files should end with a new line
--   A `README.md` file, at the root of the folder of the project is mandatory
--   Your code should use the `Betty` style. It will be checked using [betty-style.pl](https://github.com/holbertonschool/Betty/blob/master/betty-style.pl "betty-style.pl") and [betty-doc.pl](https://github.com/holbertonschool/Betty/blob/master/betty-doc.pl "betty-doc.pl")
--   You are not allowed to use global variables
--   No more than 5 functions per file
--   The only C standard library functions allowed are `malloc`, `free` and `exit`. Any use of functions like `printf`, `puts`, `calloc`, `realloc` etc... is forbidden
--   You are allowed to use [_putchar](https://github.com/holbertonschool/_putchar.c/blob/master/_putchar.c "_putchar")
--   You don't have to push `_putchar.c`, we will use our file. If you do it won't be taken into account
--   In the following examples, the `main.c` files are shown as examples. You can use them to test your functions, but you don't have to push them to your repo (if you do we won't take them into account). We will use our own `main.c` files at compilation. Our `main.c` files might be different from the one shown in the examples
--   The prototypes of all your functions and the prototype of the function `_putchar` should be included in your header file called `function_pointers.h`
--   Don't forget to push your header file
--   All your header files should be include guarded
+This declares a function pointer called `myFunc` that takes two `int` arguments and returns an `int`.
+
+To use a function pointer, you need to assign it the address of a function. Here's an example:
+
+```c
+int add(int a, int b) {
+    return a + b;
+}
+
+int (*myFunc)(int, int) = add;
+
+```
+
+This assigns the address of the `add` function to `myFunc`.
+
+You can then call the function using the pointer, like this:
+
+```c
+int result = myFunc(4, 5); // result will be 9
+
+```
+
+Function pointers can also be used with function pointers in arrays or structures. Here's an example of a function pointer array:
+
+```c
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int (*mathFuncs[3])(int, int) = { add, subtract, multiply };
+
+```
+
+This declares an array called `mathFuncs` that holds three function pointers to the `add`, `subtract`, and `multiply` functions.
+
+You can then call the functions using the pointers in the array, like this:
+
+```c
+int result1 = mathFuncs[0](4, 5); // result1 will be 9
+int result2 = mathFuncs[1](4, 5); // result2 will be -1
+int result3 = mathFuncs[2](4, 5); // result3 will be 20
+
+```
+
+Function pointers hold the address of a function in virtual memory. When you call a function through a function pointer, the program looks up the function's address in memory and jumps to that location to execute the function.
+
+## What are function pointers and how to use them
 
 
-Tasks
-0. What's my name
-mandatory
 
-Write a function that prints a name.
+---
 
-    Prototype: void print_name(char *name, void (*f)(char *));
+## Tasks
 
-julien@ubuntu:~/0x0e. Function pointers$ cat 0-main.c
-#include <stdio.h>
+---
+
+<details>
+<summary>
+<a href="./0-print_name.c">0. What's my name</a>
+</summary>
+
+### 0\. What's my name
+
+```c
 #include "function_pointers.h"
+#include <stdio.h>
 
 /**
  * print_name_as_is - prints a name as is
- * @name: name of the person
+ * @name: name to print
  *
- * Return: Nothing.
+ * Return: void
  */
 void print_name_as_is(char *name)
 {
-    printf("Hello, my name is %s\n", name);
+	printf("Hello, my name is %s\n", name);
 }
 
 /**
- * print_name_uppercase - print a name in uppercase
- * @name: name of the person
+ * print_name_uppercase - prints a name in uppercase
+ * @name: name to print
  *
- * Return: Nothing.
+ * Return: void
  */
 void print_name_uppercase(char *name)
 {
-    unsigned int i;
+    int i;
 
     printf("Hello, my uppercase name is ");
-    i = 0;
-    while (name[i])
+    for (i = 0; name[i]; i++)
     {
         if (name[i] >= 'a' && name[i] <= 'z')
-        {
-            putchar(name[i] + 'A' - 'a');
-        }
+            printf("%c", name[i] - 32);
         else
-        {
-            putchar(name[i]);
-        }
-        i++;
+            printf("%c", name[i]);
     }
+    printf("\n");
 }
 
 /**
  * main - check the code
- *
  * Return: Always 0.
  */
 int main(void)
 {
-    print_name("Bob", print_name_as_is);
-    print_name("Bob Dylan", print_name_uppercase);
-    printf("\n");
+	print_name("Bob", print_name_as_is);
+	print_name("Bob Dylan", print_name_uppercase);
+	printf("\n");
     return (0);
 }
-julien@ubuntu:~/0x0e. Function pointers$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 0-main.c 0-print_name.c -o a
-julien@ubuntu:~/0x0e. Function pointers$ ./a 
-Hello, my name is Bob
-Hello, my uppercase name is BOB DYLAN
-julien@ubuntu:~/0x0e. Function pointers$ 
+```
 
-Repo:
+> Compiled with: `gcc -Wall -pedantic -Werror -Wextra 0-main.c 0-print_name.c -o 0-print_name`
+> Output:
+> ```shell
+> $ ./0-print_name
+> Hello, my name is Bob
+> Hello, my uppercase name is BOB DYLAN
+> ```
 
-    GitHub repository: alx-low_level_programming
-    Directory: 0x0F-function_pointers
-    File: 0-print_name.c
+</details>
 
-1. If you spend too much time thinking about a thing, you'll never get it done
-mandatory
+--- 
 
-Write a function that executes a function given as a parameter on each element of an array.
+<details>
+<summary>
+<a href="./1-array_iterator.c">1. If you spend too much time thinking about a thing, you'll never get it done</a>
+</summary>
 
-    Prototype: void array_iterator(int *array, size_t size, void (*action)(int));
-    where size is the size of the array
-    and action is a pointer to the function you need to use
+### 1\. If you spend too much time thinking about a thing, you'll never get it done
 
-julien@ubuntu:~/0x0e. Function pointers$ cat 1-main.c
-#include <stdio.h>
+```c
 #include "function_pointers.h"
+#include <stdio.h>
 
 /**
  * print_elem - prints an integer
- * @elem: the integer to print
+ * @elem: integer to print
  *
- * Return: Nothing.
+ * Return: void
  */
 void print_elem(int elem)
 {
@@ -147,10 +183,10 @@ void print_elem(int elem)
 }
 
 /**
- * print_elem_hex - prints an integer, in hexadecimal
- * @elem: the integer to print
+ * print_elem_hex - prints an integer in hexadecimal
+ * @elem: integer to print
  *
- * Return: Nothing.
+ * Return: void
  */
 void print_elem_hex(int elem)
 {
@@ -159,144 +195,133 @@ void print_elem_hex(int elem)
 
 /**
  * main - check the code
- *
  * Return: Always 0.
  */
 int main(void)
 {
     int array[5] = {0, 98, 402, 1024, 4096};
 
-    array_iterator(array, 5, &print_elem);
-    array_iterator(array, 5, &print_elem_hex);
+    array_iterator(array, 5, print_elem);
+    printf("\n");
+    array_iterator(array, 5, print_elem_hex);
     return (0);
 }
-julien@ubuntu:~/0x0e. Function pointers$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 1-main.c 1-array_iterator.c -o b
-julien@ubuntu:~/0x0e. Function pointers$ ./b 
-0
-98
-402
-1024
-4096
-0x0
-0x62
-0x192
-0x400
-0x1000
-julien@ubuntu:~//0x0e. Function pointers$ 
+```
 
-Repo:
+> Compiled with: `gcc -Wall -pedantic -Werror -Wextra 1-main.c 1-array_iterator.c -o 1-array_iterator`
+> Output:
+> ```shell
+> $ ./1-array_iterator
+> 0
+> 98
+> 402
+> 1024
+> 4096
+> 
+> 0x0
+> 0x62
+> 0x192
+> 0x400
+> 0x1000
+> ```
 
-    GitHub repository: alx-low_level_programming
-    Directory: 0x0F-function_pointers
-    File: 1-array_iterator.c
+</details>
 
-2. To hell with circumstances; I create opportunities
-mandatory
+---
 
-Write a function that searches for an integer.
+<details>
+<summary>
+<a href="./2-int_index.c">2. To hell with circumstances; I create opportunities</a>
+</summary>
 
-    Prototype: int int_index(int *array, int size, int (*cmp)(int));
-    where size is the number of elements in the array array
-    cmp is a pointer to the function to be used to compare values
-    int_index returns the index of the first element for which the cmp function does not return 0
-    If no element matches, return -1
-    If size <= 0, return -1
+### 2\. To hell with circumstances; I create opportunities
 
-julien@ubuntu:~/0x0e. Function pointers$ cat 2-main.c
-#include <stdio.h>
+```c
 #include "function_pointers.h"
+#include <stdio.h>
 
 /**
- * is_98 - check if a number is equal to 98
- * @elem: the integer to check
+ * is_98 - checks if a number is equal to 98
+ * @elem: integer to check
  *
- * Return: 0 if false, something else otherwise.
+ * Return: 1 if true, 0 otherwise
  */
 int is_98(int elem)
 {
-    return (98 == elem);
+    return (elem == 98);
 }
 
 /**
- * is_strictly_positive - check if a number is greater than 0
- * @elem: the integer to check
+ * is_strictly_positive - checks if a number is greater than 0
+ * @elem: integer to check
  *
- * Return: 0 if false, something else otherwise.
+ * Return: 1 if true, 0 otherwise
  */
 int is_strictly_positive(int elem)
 {
     return (elem > 0);
 }
 
-
-/**
- * abs_is_98 - check if the absolute value of a number is 98
- * @elem: the integer to check
- *
- * Return: 0 if false, something else otherwise.
- */
-int abs_is_98(int elem)
-{
-    return (elem == 98 || -elem == 98);
-}
-
 /**
  * main - check the code
- *
  * Return: Always 0.
  */
 int main(void)
 {
-    int array[20] = {0, -98, 98, 402, 1024, 4096, -1024, -98, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 98};
+    int array[5] = {0, 98, 402, 1024, 4096};
     int index;
 
-    index = int_index(array, 20, is_98);
+    index = int_index(array, 5, is_98);
     printf("%d\n", index);
-    index = int_index(array, 20, abs_is_98);
+    index = int_index(array, 5, is_strictly_positive);
     printf("%d\n", index);
-    index = int_index(array, 20, is_strictly_positive);
+    index = int_index(array, 5, NULL);
     printf("%d\n", index);
     return (0);
 }
-julien@ubuntu:~/0x0e. Function pointers$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 2-main.c 2-int_index.c -o c
-julien@ubuntu:~/0x0e. Function pointers$ ./c 
-2
-1
-2
-julien@ubuntu:~/0x0e. Function pointers$ 
+```
 
-Repo:
+> Compiled with: `gcc -Wall -pedantic -Werror -Wextra 2-main.c 2-int_index.c -o 2-int_index`
+> Output:
+> ```shell
+> $ ./2-int_index
+> 1
+> 2
+> -1
+> ```
 
-    GitHub repository: alx-low_level_programming
-    Directory: 0x0F-function_pointers
-    File: 2-int_index.c
+</details>
 
-3. A goal is not always meant to be reached, it often serves simply as something to aim at
-mandatory
+---
+
+<details>
+<summary>
+<a href="./3-calc.h">3. A goal is not always meant to be reached, it often serves simply as something to aim at</a>
+</summary>
+
+### 3\. A goal is not always meant to be reached, it often serves simply as something to aim at
 
 Write a program that performs simple operations.
-
-    You are allowed to use the standard library
-    Usage: calc num1 operator num2
-    You can assume num1 and num2 are integers, so use the atoi function to convert them from the string input to int
-    operator is one of the following:
-        +: addition
-        -: subtraction
-        *: multiplication
-        /: division
-        %: modulo
-    The program prints the result of the operation, followed by a new line
-    You can assume that the result of all operations can be stored in an int
-    if the number of arguments is wrong, print Error, followed by a new line, and exit with the status 98
-    if the operator is none of the above, print Error, followed by a new line, and exit with the status 99
-    if the user tries to divide (/ or %) by 0, print Error, followed by a new line, and exit with the status 100
+- You are allowed to use the standard library
+- Usage: `calc num1 operator num2`
+- You can assume `num1` and `num2` are integers, so use the `atoi` function to convert them from the string input to `int`
+- `operator` is one of the following:
+    - `+`: addition
+    - `-`: subtraction
+    - `*`: multiplication
+    - `/`: division
+    - `%`: modulo
+- The program prints the result of the operation, followed by a new line
+- You can assume that the result of all operations can be stored in an `int`
+- If the number of arguments is wrong, print `Error`, followed by a new line, and exit with the status `98`
+- If the `operator` is none of the above, print `Error`, followed by a new line, and exit with the status `99`
+- If the user tries to divide (`/` or `%`) by `0`, print `Error`, followed by a new line, and exit with the status `100`
 
 This task requires that you create four different files.
 
-3-calc.h
-
-This file should contain all the function prototypes and data structures used by the program. You can use this structure:
-
+- [`3-calc.h`](./3-calc.h) should contain all the function prototypes and data structures used by the program.
+You can only use this structure:
+```c
 /**
  * struct op - Struct op
  *
@@ -308,106 +333,102 @@ typedef struct op
     char *op;
     int (*f)(int a, int b);
 } op_t;
-
-3-op_functions.c
-
-This file should contain the 5 following functions (not more):
-
-    op_add: returns the sum of a and b. Prototype: int op_add(int a, int b);
-    op_sub: returns the difference of a and b. Prototype: int op_sub(int a, int b);
-    op_mul: returns the product of a and b. Prototype: int op_mul(int a, int b);
-    op_div: returns the result of the division of a by b. Prototype: int op_div(int a, int b);
-    op_mod: returns the remainder of the division of a by b. Prototype: int op_mod(int a, int b);
-
-3-get_op_func.c
-
-This file should contain the function that selects the correct function to perform the operation asked by the user. You’re not allowed to declare any other function.
-
-    Prototype: int (*get_op_func(char *s))(int, int);
-    where s is the operator passed as argument to the program
-    This function returns a pointer to the function that corresponds to the operator given as a parameter. Example: get_op_func("+") should return a pointer to the function op_add
-    You are not allowed to use switch statements
-    You are not allowed to use for or do ... while loops
-    You are not allowed to use goto
-    You are not allowed to use else
-    You are not allowed to use more than one if statement in your code
-    You are not allowed to use more than one while loop in your code
-    If s does not match any of the 5 expected operators (+, -, *, /, %), return NULL
-    You are only allowed to declare these two variables in this function:
-
-    op_t ops[] = {
-        {"+", op_add},
-        {"-", op_sub},
-        {"*", op_mul},
-        {"/", op_div},
-        {"%", op_mod},
-        {NULL, NULL}
-    };
-    int i;
-
-3-main.c
-
-This file should contain your main function only.
-
-    You are not allowed to code any other function than main in this file
-    You are not allowed to directly call op_add, op_sub, op_mul, op_div or op_mod from the main function
-    You have to use atoi to convert arguments to int
-    You are not allowed to use any kind of loop
-    You are allowed to use a maximum of 3 if statements
-
-Compilation and examples
-
-julien@ubuntu:~/0x0e. Function pointers$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 3-main.c 3-op_functions.c 3-get_op_func.c -o calc
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1 + 1
-2
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 97 + 1
-98
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 / 10
-102
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 '*' 98
-100352
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 '\*' 98
-Error
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 - 98
-926
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 '%' 98
-44
-julien@ubuntu:~/0x0e. Function pointers$ 
-
-Repo:
-
-    GitHub repository: alx-low_level_programming
-    Directory: 0x0F-function_pointers
-    File: 3-main.c, 3-op_functions.c, 3-get_op_func.c, 3-calc.h
-
-
-### 4\. Most hackers are young because young people tend to be adaptable. As long as you remain adaptable, you can always be a good hacker
-
-#advanced
-
-Score: 0.00% (Checks completed: 0.00%)
-
-Write a program that prints the [opcodes](https://alx-intranet.hbtn.io/rltoken/5eSu8Ohx0ddeNGmaeDo_zQ "opcodes") of its own main function.
-
--   Usage: `./main number_of_bytes`
--   Output format:
-    -   the opcodes should be printed in hexadecimal, lowercase
-    -   each opcode is two char long
-    -   listing ends with a new line
-    -   see example
--   You are allowed to use `printf` and `atoi`
--   You have to use `atoi` to convert the argument to an `int`
--   If the number of argument is not the correct one, print `Error`, followed by a new line, and exit with the status `1`
--   If the number of bytes is negative, print `Error`, followed by a new line, and exit with the status `2`
--   You do not have to compile with any flags
-
-Note: if you want to translate your opcodes to assembly instructions, you can use, for instance [udcli](https://alx-intranet.hbtn.io/rltoken/J14-FI4TyhQWgX-aMh_Nnw "udcli").
-
 ```
-julien@ubuntu:~/0x0e. Function pointers$ gcc -std=gnu89 100-main_opcodes.c -o main
-julien@ubuntu:~/0x0e. Function pointers$ ./main 21
+
+- [`3-op_functions.c`](./3-op_functions.c) should contain the 5 following functions (not more):
+    - `op_add` that returns the sum of a and b. (prototype: `int op_add(int a, int b);`)
+    - `op_sub` that returns the difference of a and b. (prototype: `int op_sub(int a, int b);`)
+    - `op_mul` that returns the product of a and b. (prototype: `int op_mul(int a, int b);`)
+    - `op_div` that returns the result of the division of a by b. (prototype: `int op_div(int a, int b);`)
+    - `op_mod` that returns the remainder of the division of a by b. (prototype: `int op_mod(int a, int b);`)
+
+- [`3-get_op_func.c`](./3-get_op_func.c) should contain the function that selects the correct function to perform the operation asked by the user. You’re not allowed to declare any other function.
+    - Prototype:
+        ```c
+        int (*get_op_func(char *s))(int, int);
+        ```
+    - Where `s` is the operator passed as argument to the program.
+    - Your function returns a pointer to the function that corresponds to the operator given as a parameter. Example: `get_op_func("+")` should return a pointer to the function `op_add`.
+    - You are not allowed to use `else`, `switch`, `case`, `goto`, or ternary operator (`?:`).
+    - You are not allowed to use `for` or `do ... while` loops.
+    - You are not allowed to use more than one `if` statement in your code.
+    - You are not allowed to use more than one `while` loop in your code.
+    - If `s` does not match any of the 5 expected operators (`+`, `-`, `*`, `/`, `%`), return `NULL`.
+    - You are only allowed to declare these two variables in this function:
+        ```c
+        op_t ops[] = {
+            {"+", op_add},
+            {"-", op_sub},
+            {"*", op_mul},
+            {"/", op_div},
+            {"%", op_mod},
+            {NULL, NULL}
+        };
+        int i;
+        ```
+
+- [`3-main.c`](./3-main.c) should contain your `main` function only.
+    - You are not allowed to code any other function than `main` in the file `3-main.c`.
+    - You are not allowed to directly call `op_add`, `op_sub`, `op_mul`, `op_div` and `op_mod` from the file `3-main.c`.
+    - You have to use `atoi` to convert arguments to `int`.
+    - You are not allowed to use any kind of loop (`for`, `do ... while`, `while`, etc.).
+    - You are allowed a maximum of 3 `if` statements in your code.
+
+> Compiled with: `gcc -Wall -pedantic -Werror -Wextra -std=gnu89 3-main.c 3-op_functions.c 3-get_op_func.c -o calc`
+
+> Output:
+> ```shell
+> $ ./calc 1 + 1
+> 2
+> $ ./calc 1024 '*' 98
+> 100352
+> $ ./calc 1024 '/' 98
+> 10
+> $ ./calc 1024 '%' 98
+> 38
+> $ ./calc 1024 '+' 98
+> 1122
+> $ ./calc 1024 '-' 98
+> 926
+> $ ./calc 1024 'a' 98
+> Error
+> $ ./calc 1024 '+' 98 98
+> Error
+> $
+> ```
+
+</details>
+
+--- 
+
+<details>
+<summary>
+<a href="./100-main_opcodes.c">4. Once an idea has taken hold of the brain it's almost impossible to eradicate</a>
+</summary>
+
+### 4\. Once an idea has taken hold of the brain it's almost impossible to eradicate
+
+Write a program that prints the [`opcodes`](https://en.wikipedia.org/wiki/Opcode) of its own main function.
+
+- Usage: `./main number_of_bytes`
+- Output format:
+    - the opcodes should be printed in hexadecimal, lowercase
+    - each opcode is two char long
+    - listing ends with a new line
+    - see example
+- You are allowed to use `printf` and `atoi`
+- You have to use `atoi` to convert the argument to an `int`
+- If the number of arguments is not the correct one, print `Error`, followed by a new line, and exit with the status `1`
+- If the number of bytes is negative, print `Error`, followed by a new line, and exit with the status `2`
+- You do not have to compile with any flags
+
+> Note: if you want to translate your opcodes to assembly instructions, you can use, for instance [udcli](https://sourceforge.net/projects/udis86/).
+
+> Output:
+```shell
+$ ./main 21
 55 48 89 e5 48 83 ec 30 89 7d dc 48 89 75 d0 83 7d dc 02 74 14
-julien@ubuntu:~/0x0e. Function pointers$ objdump -d -j.text -M intel main
+$ objdump -d -j.text -M intel main
 [...]
 00000000004005f6 <main>:
   4005f6:   55                      push   rbp
@@ -418,23 +439,18 @@ julien@ubuntu:~/0x0e. Function pointers$ objdump -d -j.text -M intel main
   400605:   83 7d dc 02             cmp    DWORD PTR [rbp-0x24],0x2
   400609:   74 14                   je     40061f <main+0x29>
 [...]
-julien@ubuntu:~/0x0e. Function pointers$ ./main 21 | udcli -64 -x -o 4005f6
-00000000004005f6 55               push rbp
-00000000004005f7 4889e5           mov rbp, rsp
-00000000004005fa 4883ec30         sub rsp, 0x30
-00000000004005fe 897ddc           mov [rbp-0x24], edi
-0000000000400601 488975d0         mov [rbp-0x30], rsi
+$ ./main 21 | udcli -64 -x -o 4005f6
+00000000004005f6 55               push rbp                
+00000000004005f7 4889e5           mov rbp, rsp            
+00000000004005fa 4883ec30         sub rsp, 0x30           
+00000000004005fe 897ddc           mov [rbp-0x24], edi     
+0000000000400601 488975d0         mov [rbp-0x30], rsi     
 0000000000400605 837ddc02         cmp dword [rbp-0x24], 0x2
 0000000000400609 7414             jz 0x40061f
-julien@ubuntu:~/0x0e. Function pointers$
-
+[...]
+$
 ```
+> Note 0: `je` is equivalent to `jz`
+> Note 1: depending on how you write your `main` function, and on which machine you compile your program, the opcodes (and by extension the assembly code) might be different than the above example
 
--   *Note 0: `je` is equivalent to `jz`*
--   *Note 1: depending on how you write your `main` function, and on which machine you compile your program, the opcodes (and by extension the assembly code) might be different than the above example*
-
-**Repo:**
-
--   GitHub repository: `alx-low_level_programming`
--   Directory: `0x0F-function_pointers`
--   File: `100-main_opcodes.c`
+</details>
