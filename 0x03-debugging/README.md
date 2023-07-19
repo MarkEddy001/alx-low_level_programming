@@ -3,12 +3,6 @@
 # Debugging in Software Development
 
 
-<p align="center">  
-<img src ="./imgs/debugging.png" width="500">
-</p>
-
-> You can't keep doing the same thing and expect different results
-
 Debugging is the process of detecting and removing of existing and potential errors (also called as 'bugs') in a software code that can cause it to behave unexpectedly or crash.
 `YOU HAVE TO CRAETE YOUR PROTOTYPE ON YOUR main.h file FOR YOUR CODES TO WORK`
 
