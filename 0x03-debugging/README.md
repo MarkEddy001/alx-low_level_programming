@@ -1,5 +1,13 @@
 `IDENTIFY ERROR`![image](https://user-images.githubusercontent.com/105258746/190832836-b113fa0f-e26f-4db1-b8c5-d094c3dfd0a7.png) `ANALYZE ERROR`
 
+# Debugging in Software Development
+
+
+<p align="center">  
+<img src ="./imgs/debugging.png" width="500">
+</p>
+
+> You can't keep doing the same thing and expect different results
 
 Debugging is the process of detecting and removing of existing and potential errors (also called as 'bugs') in a software code that can cause it to behave unexpectedly or crash.
 `YOU HAVE TO CRAETE YOUR PROTOTYPE ON YOUR main.h file FOR YOUR CODES TO WORK`
