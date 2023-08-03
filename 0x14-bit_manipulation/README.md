@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 0x14. C - Bit manipulation
+=======
+##0x14. C - Bit manipulation
+>>>>>>> 71885d9d2f1dbee6d56ad0a3fabd93a9d18628b4
 
 TASK 0
 
