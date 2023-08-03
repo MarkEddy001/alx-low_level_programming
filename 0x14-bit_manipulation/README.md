@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 0x14. C - Bit manipulation
-=======
-##0x14. C - Bit manipulation
->>>>>>> 71885d9d2f1dbee6d56ad0a3fabd93a9d18628b4
 
 TASK 0
 
@@ -54,5 +50,6 @@ Write a function that returns the number of bits you would need to flip to get f
 
     Prototype: unsigned int flip_bits(unsigned long int n, unsigned long int m);
     You are not allowed to use the % or / operators
+
 
 
