@@ -22,12 +22,15 @@ General
     What is malloc and free and how to use them
     Why and when use malloc
     How to use valgrind to check for memory leak
+
+---
 TASK 0 Write a function that creates an array of chars, and initializes it with a specific char.
 
     Prototype: char *create_array(unsigned int size, char c);
     Returns NULL if size = 0
     Returns a pointer to the array, or NULL if it fails
 
+---
 TASK 1 Write a function that returns a pointer to a newly allocated space in memory, which contains a copy of the string given as a parameter.
 
     Prototype: char *_strdup(char *str);
@@ -36,6 +39,7 @@ TASK 1 Write a function that returns a pointer to a newly allocated space in mem
     On success, the _strdup function returns a pointer to the duplicated string. It returns NULL if insufficient memory was available
     FYI: The standard library provides a similar function: strdup. Run man strdup to learn more.
 
+---
 TASK 2 Write a function that concatenates two strings.
 
     Prototype: char *str_concat(char *s1, char *s2);
