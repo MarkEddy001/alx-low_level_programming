@@ -62,6 +62,7 @@ TASK 4 Write a function that frees a 2 dimensional grid previously created by yo
     Your program should not crash if the grid is invalid (NULL or size = 0)
     Note that we will compile with your alloc_grid.c file. Make sure it compiles.
 
+---
 TASK 5 Write a function that concatenates all the arguments of your program.
 
     Prototype: char *argstostr(int ac, char **av);
