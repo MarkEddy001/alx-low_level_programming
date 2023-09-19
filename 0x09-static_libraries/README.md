@@ -18,6 +18,7 @@ This project finds solutions to the following:
 - [Using A "C" Library In A Program](https://docencia.ac.upc.edu/FIB/USO/Bibliografia/unix-c-libraries.html).
 - [What is difference between Dynamic and Static library(Static and Dynamic linking)](https://www.youtube.com/watch?v=eW5he5uFBNM) (stop at 4:44)
 
+---
 ## Tasks
 
 0. [A library is not a luxury but one of the necessities of life](./libholberton.a) : Creating a static library containing all the functions listed below.
