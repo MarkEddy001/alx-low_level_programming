@@ -47,6 +47,7 @@ TASK 2 Write a function that concatenates two strings.
     if NULL is passed, treat it as an empty string
     The function should return NULL on failure
 
+---
 TASK 3 Write a function that returns a pointer to a 2 dimensional array of integers.
 
     Prototype: int **alloc_grid(int width, int height);
