@@ -18,6 +18,7 @@ This project finds solutions to the following:
 - [Using A "C" Library In A Program](https://docencia.ac.upc.edu/FIB/USO/Bibliografia/unix-c-libraries.html).
 - [What is difference between Dynamic and Static library(Static and Dynamic linking)](https://www.youtube.com/watch?v=eW5he5uFBNM) (stop at 4:44)
 
+---
 ## Tasks
 
 0. [A library is not a luxury but one of the necessities of life](./libholberton.a) : Creating a static library containing all the functions listed below.
@@ -55,6 +56,7 @@ This project finds solutions to the following:
 		- We confirm if our object files were linked successfully.
 			`nm libholberton.h`
 	- Compile the main code to test our static library this way: `gcc -std=gnu89 main.c -L. -lholberton -o quote`
+---
 1. [Without libraries what have we? We have no past and no future](./create_static_lib.sh) : Create a script that creates a library called `liball.a` from all the `.c` files that are in the current directory.
 
 
@@ -75,27 +77,37 @@ General Learning Objectives
 
     How to use arguments passed to your program
     What are two prototypes of main that you know of, and in which case do you     use one or the other
-    How to use __attribute__((unused)) or (void) to compile functions with unus    ed variables or parameters
+    How to use __attribute__((unused)) or (void) to compile functions with unused variables or parameters
+
+---
 
 TASK 0 Write a program that prints its name, followed by a new line.
 
     If you rename the program, it will print the new name, without having to compile it again
     You should not remove the path before the name of the program
 
+---
+
 TASK 1 Write a program that prints the number of arguments passed into it.
 
     Your program should print a number, followed by a new line
+
+---
 
 TASK 2 Write a program that prints all arguments it receives.
 
     All arguments should be printed, including the first one
     Only print one argument per line, ending with a new line
 
+---
+
 TASK 3 Write a program that multiplies two numbers.
 
     Your program should print the result of the multiplication, followed by a new line
     You can assume that the two numbers and result of the multiplication can be stored in an integer
     If the program does not receive two arguments, your program should print Error, followed by a new line, and return 1
+
+---
 
 TASK 4 Write a program that adds positive numbers.
 
