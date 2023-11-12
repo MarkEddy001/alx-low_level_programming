@@ -2,7 +2,7 @@
 <img src ="https://assets.imaginablefutures.com/media/images/ALX_Logo.max-200x150.png">
 </p>
 
-# Low-Level Programming - Data Structures, Algorithms, Linux/Unix System Programming
+# **`Low-Level Programming - Data Structures, Algorithms, Linux/Unix System Programming`**
 
 ## Description
 This repository contains programs written for the low-level programming and
