@@ -84,7 +84,7 @@ To access any project you are willing to view , please proceed like this:
 
 ## Author
 
-* **Wanyoike Mark Edwards** <[MarkEddy001](https://github.com/MarkEddy001)>
+* **`Wanyoike Mark Edwards`** <[MarkEddy001](https://github.com/MarkEddy001)>
 
 ## Aknowledgements
 
