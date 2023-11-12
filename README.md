@@ -61,8 +61,8 @@ To access any project you are willing to view , please proceed like this:
 
 
 
-        - git clone https://github.com/MarkEddy001/alx-low_level_programming
-        - cd alx-low_level_programming
+        - **`git clone https://github.com/MarkEddy001/alx-low_level_programming`**
+        - **`cd alx-low_level_programming`**
 
 
 * open your desired project (we take Hello world project as example)
